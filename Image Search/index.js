@@ -1,11 +1,8 @@
-//collection of photos
-// https://api.unsplash.com/photos/?client_id=
-
 //seach photos
 // https://api.unsplash.com/search/photos/?query=dog&client_id=
 
 const access_key = ""
-const base_url = "https://api.unsplash.com/search/photos/?query="
+const base_url = "https://api.unsplash.com/search/photos/"
 
 
 const queryInput = document.getElementById("search");
@@ -13,17 +10,29 @@ const searchBtn = document.getElementById("btn");
 const cardContainer = document.getElementById("card-container");
 const templateCard = document.getElementById("template-card");
 const showMoreBtn = document.getElementById("show-more-button");
+const loader = document.getElementById("loader");
 
+let page = 1;
 searchBtn.addEventListener('click', () => {
-    searchImages(queryInput.value);
+    isPressed = true;
+    searchImages(queryInput.value, page=1, isPressed);
 });
 
 
-async function searchImages(query){
-    const response = await fetch("https://api.unsplash.com/search/photos/?query="+query+"&client_id="+access_key);
+async function searchImages(query, page){
+    loader.style.display = "block"
+    const url = base_url+"?page="+page+"&query="+query+"&client_id="+access_key
+    console.log(url)
+    const response = await fetch(url);
     const result = await response.json();
 
+    if(isPressed){
+        cardContainer.innerHTML = "";
+        isPressed = false;
+    }
+
     bind(result.results);
+    loader.style.display = "none"
     showMoreBtn.style.display = "block";
 }
 
@@ -52,3 +61,8 @@ function load(cards, clone){
     img.src = cards.urls.regular;
     desc.innerText = cards.description;
 }
+
+showMoreBtn.addEventListener('click', ()=>{
+    page++;
+    searchImages(queryInput.value, page);
+})
