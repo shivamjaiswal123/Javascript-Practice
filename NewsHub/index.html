@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Newshub</title>
+</head>
+
+<body>
+    
+    <!-- nav bar -->
+    <nav>
+        <div class="container flex nav-bar">
+            <div class="logo">
+                Newshub
+            </div>
+            <div>
+                <ul class="nav-links flex">
+                    <li id="ipl" onclick="onNavItemClick('ipl')">IPL</li>
+                    <li id="finance" onclick="onNavItemClick('finance')">Finace</li>
+                    <li id="politics" onclick="onNavItemClick('politics')">Politics</li>
+                    <li id="technology" onclick="onNavItemClick('technology')">Technology</li>
+                </ul>
+            </div>
+            <div class="search">
+                <input id="search-text" type="text" placeholder="e.g. Science">
+                <button id="search-btn">Search</button>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- news -->
+    <main>
+        <div class="card-container container flex" id="card-container">
+            
+        </div>
+    </main>
+
+    <template id="template-news-card">
+        <div class="card">
+            <div class="card-header">
+                <img src="https://via.placeholder.com/400x200" id="news-img" alt="">
+            </div>
+            <div class="card-content">
+                <h3 id="news-title">This is the title</h3>
+                <h6 id="news-source">this is the content of the news.. You can trust on this site and share the knowledge
+                    with
+                    others..
+                    There won't be any issue</h6>
+                <p id="news-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque laboriosam quae
+                    placeat earum illum possimus cupiditate molestias ea optio alias blanditiis sunt, quo porro
+                    doloribus amet iure exercitationem ducimus. Assumenda?</p>
+            </div>
+        </div>
+    </template>
+
+    <script src="index.js"></script>
+
+</body>
+
+</html>
